@@ -1,8 +1,9 @@
 import { React, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function LoginSecondary(props) {
   const isAdmin = props.id === "admin" ? true : false;
-
+  const navigate = useNavigate();
   const [data, setData] = useState({
     username: "",
     password: "",
@@ -14,10 +15,11 @@ function LoginSecondary(props) {
       return { ...prev, [name]: value };
     });
   }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { username, password } = data;
-    let res = await fetch("/logincred", {
+    let res = await fetch("/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,10 +32,11 @@ function LoginSecondary(props) {
     });
 
     const result = await res.json();
-    if (result.status === 422) {
-      alert("Failed");
-    } else {
-      alert("Success");
+    console.log(result);
+    if (result.message === "success") {
+      navigate(`${isAdmin ? "/admin/home" : "/faculty/home"}`, {
+        state: { username: username },
+      });
     }
   };
 

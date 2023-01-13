@@ -1,6 +1,8 @@
 import LoginPrimary from "./components/login/LoginPrimary";
 import LoginSecondary from "./components/login/LoginSecondary";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import FacultyData from "./pages/FacultyData/FacultyData";
+import StudentData from "./pages/StudentData/StudentData";
 import Admin from "./components/admin/Admin";
 import Faculty from "./components/faculty/Faculty";
 
@@ -21,6 +23,8 @@ function App() {
         ></Route>
         <Route path="/faculty/home" element={<Faculty />}></Route>
         <Route path="/admin/home" element={<Admin />}></Route>
+        <Route path="/faculty-data" element={<FacultyData />}></Route>
+        <Route path="/student-data" element={<StudentData />}></Route>
       </Routes>
     </BrowserRouter>
   );
