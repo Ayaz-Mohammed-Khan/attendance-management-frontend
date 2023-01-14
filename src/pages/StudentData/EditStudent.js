@@ -149,7 +149,7 @@ function EditStudent() {
       </ul>
       <button
         onClick={() => {
-          navigate("/add-course");
+          navigate("add-course");
         }}
       >
         Add Course
