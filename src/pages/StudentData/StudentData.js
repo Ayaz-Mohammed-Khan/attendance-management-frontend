@@ -1,7 +1,9 @@
 import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
 import Student from "./Student";
 
 function AllData() {
+  const navigate = useNavigate();
   const { isLoading, error, data } = useQuery("repoData", () =>
     fetch("http://localhost:5000/api/show-student").then((res) => res.json())
   );
@@ -16,6 +18,13 @@ function AllData() {
         {data.response.map((element, index) => {
           return <Student key={index} info={element} />;
         })}
+        <button
+          onClick={() => {
+            navigate("/student-data/add-new-student");
+          }}
+        >
+          ADD STUDENT
+        </button>
       </div>
     );
   }

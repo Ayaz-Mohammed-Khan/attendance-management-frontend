@@ -7,6 +7,7 @@ import Admin from "./components/admin/Admin";
 import Faculty from "./components/faculty/Faculty";
 import EditStudent from "./pages/StudentData/EditStudent";
 import AddCourse from "./pages/StudentData/AddCourse";
+import AddStudent from "./pages/StudentData/AddStudent";
 
 function App() {
   return (
@@ -32,9 +33,10 @@ function App() {
           element={<EditStudent />}
         ></Route>
         <Route
-          path="student-data/edit-student/:id/add-course"
+          path="/student-data/edit-student/:id/add-course"
           element={<AddCourse />}
         />
+        <Route path="/student-data/add-new-student" element={<AddStudent />} />
       </Routes>
     </BrowserRouter>
   );

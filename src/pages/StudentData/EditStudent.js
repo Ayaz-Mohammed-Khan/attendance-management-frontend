@@ -148,8 +148,11 @@ function EditStudent() {
         })}
       </ul>
       <button
-        onClick={() => {
-          navigate("add-course");
+        value={state.information.rollno}
+        onClick={(e) => {
+          navigate(`/student-data/edit-student/${e.target.value}/add-course`, {
+            state: { info: state.information.rollno },
+          });
         }}
       >
         Add Course

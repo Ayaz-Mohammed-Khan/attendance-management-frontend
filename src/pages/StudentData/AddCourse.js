@@ -1,10 +1,14 @@
 import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function AddCourse() {
   const [inputData, setInputData] = useState({ course: "", attendance: 0 });
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { state } = location;
 
   const handleChange = (e) => {
-    let { name, value } = e.target.value;
+    let { name, value } = e.target;
     if (name === "attendance") {
       if (value > 100) {
         value = 100;
@@ -17,14 +21,33 @@ function AddCourse() {
     });
   };
 
+  const handleAdd = async (e) => {
+    const res = await fetch("/api/create-courses", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        rollno: state.info,
+        courses: { course: inputData.course, attendance: inputData.attendance },
+      }),
+    })
+      .then(navigate("/student-data"))
+      .then(window.location.reload());
+
+    console.log(res.json());
+  };
+
   return (
     <div>
+      <p>Course: </p>
       <input
         type="text"
         name="course"
         value={inputData.course}
         onChange={handleChange}
       />
+      <p>Attendance: </p>
       <input
         type="number"
         min="0"
@@ -33,6 +56,14 @@ function AddCourse() {
         value={inputData.attendance}
         onChange={handleChange}
       />
+      <button
+        value={state.info}
+        onClick={() => {
+          handleAdd();
+        }}
+      >
+        ADD
+      </button>
     </div>
   );
 }
