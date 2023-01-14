@@ -5,6 +5,7 @@ import FacultyData from "./pages/FacultyData/FacultyData";
 import StudentData from "./pages/StudentData/StudentData";
 import Admin from "./components/admin/Admin";
 import Faculty from "./components/faculty/Faculty";
+import EditStudent from "./pages/StudentData/EditStudent";
 
 function App() {
   return (
@@ -25,6 +26,10 @@ function App() {
         <Route path="/admin/home" element={<Admin />}></Route>
         <Route path="/faculty-data" element={<FacultyData />}></Route>
         <Route path="/student-data" element={<StudentData />}></Route>
+        <Route
+          path="student-data/edit-student/:id"
+          element={<EditStudent />}
+        ></Route>
       </Routes>
     </BrowserRouter>
   );
