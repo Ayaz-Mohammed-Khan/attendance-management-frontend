@@ -27,13 +27,14 @@ function EditStudent() {
       .then(navigate("/student-data"))
       .then(window.location.reload());
   };
-  const handleClick = async (param) => {
+  const handleClick = async () => {
     let res = await fetch("/api/update-student", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        id: state.information.rollno,
         name: info.name,
         rollno: info.rollno,
         year: info.year,
@@ -42,7 +43,8 @@ function EditStudent() {
       }),
     });
     const result = await res.json();
-    if (result.message === "success") {
+    console.log(result);
+    if (result.message) {
       navigate("/student-data");
     }
   };
@@ -145,7 +147,13 @@ function EditStudent() {
           );
         })}
       </ul>
-      <button>Add Course</button>
+      <button
+        onClick={() => {
+          navigate("/add-course");
+        }}
+      >
+        Add Course
+      </button>
       <button
         onClick={() => {
           handleClick(info.rollno);
@@ -158,118 +166,3 @@ function EditStudent() {
 }
 
 export default EditStudent;
-
-// import React, { useState } from "react";
-// import { useLocation, useNavigate } from "react-router-dom";
-// import { useQuery } from "react-query";
-
-// function EditStudent() {
-//   const location = useLocation();
-//   const { state } = location;
-//   const navigate = useNavigate();
-//   const { isLoading, error, data } = useQuery("repoData", () =>
-//     fetch("http://localhost:5000/api/show-student").then((res) => res.json())
-//   );
-
-//   if (isLoading) return <h1>Loading...</h1>;
-
-//   if (error) return <h1>An error has occurred: {error.message}</h1>;
-//   else {
-//     return (
-//       <div>
-//         <p>Name :</p>
-//         <input
-//           name="name"
-//           type="text"
-//           value={info.name}
-//           onChange={handleChange}
-//           required
-//         />
-//         <p>Roll No: </p>
-//         <input
-//           type="number"
-//           min="1"
-//           name="rollno"
-//           value={info.rollno}
-//           onChange={handleChange}
-//           required
-//         />
-//         <p>Year: </p>
-//         <input
-//           type="number"
-//           min="1"
-//           name="year"
-//           value={info.year}
-//           onChange={handleChange}
-//           required
-//         />
-//         <p>Degree: </p>
-//         <input
-//           type="text"
-//           name="degree"
-//           value={info.degree}
-//           onChange={handleChange}
-//           required
-//         />
-//         <p>Courses: </p>
-
-//         <ul>
-//           {courseState.objects.map((element, index) => {
-//             return (
-//               <li key={index}>
-//                 <p>Course: </p>
-//                 <input
-//                   name={`course`}
-//                   type="text"
-//                   value={courseState.objects[index].course}
-//                   onChange={(e) => {
-//                     const { value } = e.target;
-//                     let arraycopy = [...courseState.objects];
-//                     arraycopy[index].course = value;
-//                     setCourse({ ...courseState, objects: arraycopy });
-//                   }}
-//                   required
-//                 />
-//                 <br />
-//                 <p>Attendance: </p>
-//                 <input
-//                   name={`attendance`}
-//                   type="number"
-//                   min="0"
-//                   max="100"
-//                   value={courseState.objects[index].attendance}
-//                   onChange={(e) => {
-//                     let { value } = e.target;
-//                     if (value > 100) {
-//                       value = 100;
-//                     } else if (value < 0) {
-//                       value = 0;
-//                     }
-//                     let arraycopy = [...courseState.objects];
-//                     arraycopy[index].attendance = value;
-//                     setCourse({ ...courseState, objects: arraycopy });
-//                   }}
-//                   required
-//                 />
-//                 <p>%</p>
-//                 <button value={index} onClick={handleDelete}>
-//                   Delete Course
-//                 </button>
-//               </li>
-//             );
-//           })}
-//         </ul>
-//         <button>Add Course</button>
-//         <button
-//           onClick={() => {
-//             handleClick(info.rollno);
-//           }}
-//         >
-//           Save
-//         </button>
-//       </div>
-//     );
-//   }
-// }
-
-// export default EditStudent;
