@@ -1,6 +1,9 @@
 import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
+import decode from "jwt-decode";
 
+const cookies = new Cookies();
 function LoginSecondary(props) {
   const isAdmin = props.id === "admin" ? true : false;
   const navigate = useNavigate();
@@ -33,10 +36,10 @@ function LoginSecondary(props) {
 
     const result = await res.json();
     console.log(result);
-    if (result.message === "success") {
-      navigate(`${isAdmin ? "/admin/home" : "/faculty/home"}`, {
-        state: { username: username },
-      });
+    if (result.token) {
+      cookies.set("token", result.token);
+      const info = decode(result.token);
+      navigate(`${info.isAdmin ? "/admin/home" : "/faculty/home"}`);
     }
   };
 
