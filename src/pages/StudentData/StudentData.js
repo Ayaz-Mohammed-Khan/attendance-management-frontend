@@ -9,15 +9,16 @@ function AllData() {
   if (isLoading) return <h1>Loading...</h1>;
 
   if (error) return <h1>An error has occurred: {error.message}</h1>;
-
-  return (
-    <div>
-      <h1>Student Data</h1>
-      {data.response.map((element, index) => {
-        return <Student key={index} info={element} />;
-      })}
-    </div>
-  );
+  else {
+    return (
+      <div>
+        <h1>Student Data</h1>
+        {data.response.map((element, index) => {
+          return <Student key={index} info={element} />;
+        })}
+      </div>
+    );
+  }
 }
 
 export default function App() {

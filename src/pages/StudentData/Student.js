@@ -2,26 +2,35 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 function Student(props) {
-  function handleDelete(param) {
-    console.log(param);
-  }
+  const navigate = useNavigate();
+  const handleDelete = async (e) => {
+    await fetch("/api/remove-student", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        rollno: props.info.rollno,
+      }),
+    }).then(window.location.reload());
+  };
   function handleEdit(param) {
     navigate(`edit-student/${param}`, { state: { information: props.info } });
   }
-  const navigate = useNavigate();
+
   return (
     <div>
       <p>Name : {props.info.name}</p>
       <p>Roll No: {props.info.rollno}</p>
       <p>Year: {props.info.year}</p>
-      <p>Batch: {props.info.batch}</p>
+      <p>Degree: {props.info.degree}</p>
       <p>Courses: </p>
       <ul>
         {props.info.courses.map((element, index) => {
           return (
             <li key={index}>
               Course: {element.course} <br />
-              Attendance: {element.attendance}%
+              Attendance: {element.attendance}
             </li>
           );
         })}
