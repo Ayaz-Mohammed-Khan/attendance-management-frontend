@@ -2,7 +2,8 @@ import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import decode from "jwt-decode";
-
+import "./login.css";
+import logo from "./logo.png";
 const cookies = new Cookies();
 function LoginSecondary(props) {
   const isAdmin = props.id === "admin" ? true : false;
@@ -46,27 +47,46 @@ function LoginSecondary(props) {
   };
 
   return (
-    <div>
-      <h1>{props.id}</h1>
-      <form onSubmit={handleSubmit} method="POST">
-        <input
-          id="username"
-          name="username"
-          onChange={handleChange}
-          placeholder="Username"
-          type="text"
-          value={data.username}
-        />
-        <input
-          id="password"
-          name="password"
-          onChange={handleChange}
-          placeholder="Password"
-          type="password"
-          value={data.password}
-        />
-        <button type="submit">Login</button>
-      </form>
+    <div id="main">
+      <div id="text">
+        <img id="logo" alt="attendence-management" src={logo} />
+        <h1>Attendence Management System</h1>
+      </div>
+
+      <div id="form">
+        <form id="login" onSubmit={handleSubmit} method="POST">
+          <div>
+            <h1>{props.id}</h1>
+          </div>
+          <input
+            id="username"
+            name="username"
+            className="input-data"
+            onChange={handleChange}
+            placeholder="Username"
+            type="text"
+            value={data.username}
+          />
+          <br />
+          <br />
+          <input
+            id="password"
+            name="password"
+            className="input-data"
+            onChange={handleChange}
+            placeholder="Password"
+            type="password"
+            value={data.password}
+          />
+          <br />
+          <br />
+          <div>
+            <button id="btns" type="submit">
+              Login
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
