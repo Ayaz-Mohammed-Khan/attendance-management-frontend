@@ -75,7 +75,7 @@ function EditStudent() {
   };
 
   return (
-    <div>
+    <div id="edit_student_container">
       <p>Name :</p>
       <input
         name="name"
@@ -112,10 +112,10 @@ function EditStudent() {
       />
       <p>Courses: </p>
 
-      <ul>
+      <ol id="edit_student_courselist">
         {courseState.objects.map((element, index) => {
           return (
-            <li key={index}>
+            <li className="edit_student_course" key={index}>
               <form>
                 <p>Course: </p>
                 <input
@@ -159,9 +159,9 @@ function EditStudent() {
                   }}
                   required
                 />
-                <p>%</p>
               </form>
               <button
+                className="delete_course_button"
                 style={{ display: isAdmin === true ? "block" : "none" }}
                 value={index}
                 onClick={handleDelete}
@@ -171,24 +171,31 @@ function EditStudent() {
             </li>
           );
         })}
-      </ul>
-      <button
-        value={state.information.rollno}
-        onClick={(e) => {
-          navigate(`/student-data/edit-student/${e.target.value}/add-course`, {
-            state: { info: state.information.rollno },
-          });
-        }}
-      >
-        Add Course
-      </button>
-      <button
-        onClick={() => {
-          handleSave(info.rollno);
-        }}
-      >
-        Save
-      </button>
+      </ol>
+      <div id="edit_student_buttons">
+        <button
+          className="addcourse_student_button"
+          value={state.information.rollno}
+          onClick={(e) => {
+            navigate(
+              `/student-data/edit-student/${e.target.value}/add-course`,
+              {
+                state: { info: state.information.rollno },
+              }
+            );
+          }}
+        >
+          + New Course
+        </button>
+        <button
+          className="save_student_button"
+          onClick={() => {
+            handleSave(info.rollno);
+          }}
+        >
+          Save
+        </button>
+      </div>
     </div>
   );
 }

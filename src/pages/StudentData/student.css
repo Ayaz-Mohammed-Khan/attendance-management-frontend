@@ -45,7 +45,8 @@ tr:hover {
   position: relative;
 }
 .table_courses {
-  max-height: 15vh;
+  margin-top: 2%;
+  height: 18vh;
   overflow-y: auto;
 }
 .table_course:nth-child(even) {
@@ -55,28 +56,30 @@ tr:hover {
   position: absolute;
   right: 15%;
   bottom: 5%;
-  height: 30%;
-  width: 10%;
+  min-height: 20%;
+  min-width: 10%;
   color: white;
   border: none;
   border-radius: 10%;
-  background-color: rgb(116, 184, 14);
+  background-color: rgb(184, 14, 14);
 }
 
 .table_edit_button {
   position: absolute;
   right: 3%;
   bottom: 5%;
-  height: 30%;
-  width: 10%;
+  min-height: 20%;
+  min-width: 10%;
   color: white;
   border: none;
   border-radius: 10%;
   background-color: rgb(116, 184, 14);
 }
-.table_edit_button:hover,
-.table_delete_button:hover {
+.table_edit_button:hover {
   background-color: rgb(131, 216, 3);
+}
+.table_delete_button:hover {
+  background-color: rgb(225, 34, 34);
 }
 #table_add_student {
   border: none;
@@ -103,4 +106,200 @@ tr:hover {
 .display-flex-row {
   display: flex;
   flex-direction: row;
+}
+#add_student {
+  position: relative;
+  width: 50%;
+  margin-left: 25%;
+  min-height: 70vh;
+  padding: 10vh 5%;
+  margin-top: 10vh;
+  margin-bottom: 20vh;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(240, 248, 255, 0.761);
+}
+#add_student p {
+  font-weight: 600;
+  font-size: 1.5em;
+}
+.add_student_input {
+  height: 5vh;
+  margin-bottom: 2vh;
+}
+.add_student_buttons {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  right: 0;
+  bottom: -5vh;
+}
+#add_course_btn {
+  min-height: 5vh;
+  border: none;
+  font-size: 0.9rem;
+
+  width: 100px;
+  margin-left: 3%;
+  color: aliceblue;
+  border-radius: 5px;
+  background-color: rgb(0, 121, 0);
+}
+
+#add_student_btn {
+  min-height: 5vh;
+  border: none;
+  font-size: 0.9rem;
+
+  width: 150px;
+  margin-left: 3%;
+  color: aliceblue;
+  border-radius: 5px;
+  position: absolute;
+  right: 0;
+  bottom: -5vh;
+  background-color: rgb(0, 121, 0);
+}
+#add_course_btn:hover,
+#add_student_btn:hover {
+  background-color: rgb(0, 141, 0);
+}
+
+.add_student_courses {
+  position: relative;
+}
+.new_course_dialogbox {
+  width: 25vw;
+  height: auto;
+  font-size: 0.8rem;
+  padding: 10% 15%;
+  background-color: rgba(201, 201, 201, 0.073);
+}
+.new_course_dialogbox:nth-child(even) {
+  background-color: rgba(110, 135, 142, 0.061);
+}
+.new_course_dialogbox input {
+  width: 100%;
+}
+#edit_student_container {
+  position: relative;
+  width: 50%;
+  height: auto;
+  margin: 10vh 25%;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(249, 249, 240);
+  padding: 3% 3% 6% 3%;
+}
+#edit_student_container p,
+ol {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-top: 2%;
+}
+#edit_student_courselist {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+#edit_student_courselist li {
+  list-style-type: square;
+  padding: 5vh 10% 10vh 2%;
+  margin-left: 10%;
+  width: 80%;
+  background-color: rgba(190, 192, 192, 0.147);
+}
+#edit_student_courselist li:nth-child(even) {
+  background-color: rgba(190, 192, 192, 0.06);
+}
+#edit_student_courselist li:nth-child(even):hover,
+#edit_student_courselist li:hover {
+  background-color: rgba(190, 192, 192, 0.356);
+}
+
+#edit_student_courselist li input {
+  width: 100%;
+}
+.edit_student_course p {
+  padding-bottom: 2%;
+}
+.delete_course_button {
+  background-color: rgb(196, 1, 1);
+  color: beige;
+  min-height: 30px;
+  min-width: 140px;
+  border: none;
+  font-size: 1.1rem;
+  position: absolute;
+  right: 15%;
+  margin-top: 2%;
+}
+.delete_course_button:hover {
+  background-color: rgb(220, 0, 0);
+}
+#edit_student_buttons {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  flex-direction: row;
+}
+.save_student_button {
+  background-color: green;
+  color: white;
+  border: none;
+  font-size: 1.1rem;
+  min-height: 5vh;
+  min-width: 10vw;
+}
+.addcourse_student_button {
+  background-color: rgb(0, 105, 128);
+  color: white;
+  border: none;
+  font-size: 1.1rem;
+  min-height: 5vh;
+  min-width: 10vw;
+  margin-right: 5px;
+}
+
+.addcourse_student_button:hover {
+  background-color: rgb(0, 119, 146);
+}
+.save_student_button:hover {
+  background-color: rgb(0, 155, 0);
+}
+#add_newcourse_container {
+  position: relative;
+  font-size: 1.4rem;
+  font-weight: 600;
+  width: 50%;
+  margin: 10vh 25%;
+  height: auto;
+  padding: 5% 5% 10% 5%;
+  background-color: rgba(216, 216, 216, 0.368);
+  display: flex;
+  flex-direction: column;
+}
+
+#add_newcourse_container p {
+  padding-bottom: 1%;
+}
+#add_newcourse_container input {
+  margin-bottom: 2%;
+}
+
+#add_newcourse_button {
+  position: absolute;
+  border: none;
+  min-height: 5vh;
+  min-width: 10vw;
+  bottom: 10%;
+  right: 10%;
+  background-color: rgb(0, 183, 24);
+  color: white;
+  font-size: 1.2rem;
+  border-radius: 10px;
+}
+#add_newcourse_button:hover {
+  background-color: rgb(0, 200, 27);
 }

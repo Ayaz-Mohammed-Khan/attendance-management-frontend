@@ -40,7 +40,7 @@ function AddCourse() {
   };
 
   return (
-    <div>
+    <div id="add_newcourse_container">
       <p>Course: </p>
       <input
         type="text"
@@ -57,14 +57,17 @@ function AddCourse() {
         value={inputData.attendance}
         onChange={handleChange}
       />
-      <button
-        value={state.info}
-        onClick={() => {
-          handleAdd();
-        }}
-      >
-        ADD
-      </button>
+      <div>
+        <button
+          id="add_newcourse_button"
+          value={state.info}
+          onClick={() => {
+            handleAdd();
+          }}
+        >
+          ADD
+        </button>
+      </div>
     </div>
   );
 }

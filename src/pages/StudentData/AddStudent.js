@@ -58,9 +58,10 @@ function AddStudent() {
       .then(window.location.reload());
   };
   return (
-    <div>
+    <div id="add_student">
       <p>Name: </p>
       <input
+        className="add_student_input"
         type="text"
         value={data.name}
         name="name"
@@ -68,6 +69,7 @@ function AddStudent() {
       />
       <p>RollNo :</p>
       <input
+        className="add_student_input"
         type="number"
         value={data.rollno}
         name="rollno"
@@ -75,6 +77,7 @@ function AddStudent() {
       />
       <p>Year: </p>
       <input
+        className="add_student_input"
         type="number"
         value={data.year}
         name="year"
@@ -82,27 +85,40 @@ function AddStudent() {
       />
       <p>Degree: </p>
       <input
+        className="add_student_input"
         type="text"
         value={data.degree}
         name="degree"
         onChange={handleChange}
       />
-      <div className="display-flex-row">
+      <div className="display-flex-row add_student_courses">
         <p>Courses: </p>
         <div className="display-flex-col">
           {components.map((item, i) => (
-            <div key={i}>
+            <div className="new_course_dialogbox" key={i}>
               <p>Course:</p>
               <input type="text" className="newCourse" />
               <p>Attendance</p>
-              <input type="number" className="newAttendance" />
+              <input
+                type="number"
+                min="0"
+                max="100"
+                className="newAttendance"
+              />
             </div>
           ))}
         </div>
+        <div className="add_student_buttons">
+          <button id="add_course_btn" onClick={addComponent}>
+            + COURSE
+          </button>
+        </div>
       </div>
-
-      <button onClick={addComponent}>ADD COURSE</button>
-      <button onClick={handleADD}>ADD STUDENT</button>
+      <div className="add_student_buttons">
+        <button id="add_student_btn" onClick={handleADD}>
+          ADD STUDENT
+        </button>
+      </div>
     </div>
   );
 }

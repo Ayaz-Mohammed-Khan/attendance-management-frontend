@@ -5,6 +5,14 @@
   padding: 0;
   box-sizing: border-box;
 }
+input {
+  padding: 5px;
+  font-size: 1.01rem;
+  border-radius: 3px;
+}
+input:focus {
+  outline: none;
+}
 
 html {
   scroll-behavior: smooth;
