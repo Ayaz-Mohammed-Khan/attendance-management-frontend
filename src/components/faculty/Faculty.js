@@ -1,12 +1,19 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
 import decode from "jwt-decode";
 import "./faculty.css";
 
-function Faculty() {
+function AllData() {
   const cookies = new Cookies();
-  const username = decode(cookies.get("token")).username;
+  const isAdmin = decode(cookies.get("token")).isAdmin;
+
+  const f = async () => {
+    const { data } = await axios.get(
+      "http://localhost:5000/api/display-faculty"
+    );
+    return data;
+  };
+  console.log(f);
   return (
     <div id="maninf">
       <h1 id="h1">Faculty Home Page</h1>
@@ -22,4 +29,6 @@ function Faculty() {
   );
 }
 
-export default Faculty;
+export default function App() {
+  return <AllData />;
+}

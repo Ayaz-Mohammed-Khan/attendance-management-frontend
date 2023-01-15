@@ -7,9 +7,12 @@ function AddSubjects() {
   const location = useLocation();
   const { state } = location;
   const handleChange = (e) => {
-    let { name, value } = e.target.value;
+    const { name, value } = e.target;
     setInputData((prev) => {
-      return { ...prev, [name]: value };
+      return {
+        ...prev,
+        [name]: value,
+      };
     });
   };
   const handleAdd = async (e) => {
@@ -31,6 +34,7 @@ function AddSubjects() {
 
   return (
     <div>
+      
       <p>Subject:</p>
       <input
         type="text"
@@ -57,5 +61,4 @@ function AddSubjects() {
     </div>
   );
 }
-
 export default AddSubjects;
