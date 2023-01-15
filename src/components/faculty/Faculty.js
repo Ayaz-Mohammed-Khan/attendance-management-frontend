@@ -8,10 +8,10 @@ function AllData() {
   const username = decode(cookies.get("token")).username;
 
   return (
-    <div id="maninf">
+      <div id="maninf">
       <h1 id="h1">Faculty Home Page</h1>
       <div id="headf">
-        <h2 id="h2">{username}</h2>
+        <h2 id="h2"><span>Logged in as: </span>{username}</h2>
       </div>
       <div id="btnsf">
         <Link to="/student-data">

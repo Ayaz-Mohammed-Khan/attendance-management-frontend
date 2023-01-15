@@ -4,6 +4,7 @@ import Student from "./Student";
 import Cookies from "universal-cookie";
 import "./student.css";
 import decode from "jwt-decode";
+//new
 
 function AllData() {
   const cookies = new Cookies();

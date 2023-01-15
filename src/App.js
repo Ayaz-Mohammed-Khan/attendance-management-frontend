@@ -11,7 +11,7 @@ import AddStudent from "./pages/StudentData/AddStudent";
 import "./App.css";
 import EditFaculty from "./pages/FacultyData/EditFaculty";
 import AddSubjects from "./pages/FacultyData/Addsubjects";
-import AddFaculty from "./pages/FacultyData/Addfaculty";
+import AddFaculty from "./pages/FacultyData/AddFaculty";
 
 function App() {
   return (
@@ -36,14 +36,11 @@ function App() {
           path="student-data/edit-student/:id"
           element={<EditStudent />}
         ></Route>
-        <Route
+        <Route path="/edit-faculty/:id" element={<EditFaculty />}></Route>
+        {/* <Route
           path="faculty-data/edit-faculty/:id"
           element={<EditFaculty />}
-        ></Route>
-        <Route
-          path="faculty-data/edit-faculty/:id"
-          element={<EditFaculty />}
-        ></Route>
+        ></Route> */}
         <Route
           path="/student-data/edit-student/:id/add-course"
           element={<AddCourse />}

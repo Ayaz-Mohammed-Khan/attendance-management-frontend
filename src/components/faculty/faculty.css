@@ -1,6 +1,10 @@
+body{
+  margin:0;
+  padding: 0;
+}
 #maninf {
   position: absolute;
-  background-color: #3aafa9;
+  /* background-color: #3aafa9; */
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -10,16 +14,28 @@
 }
 #h1 {
   font-weight: bolder;
+  margin-top:0;
   position: absolute;
-  top: 15px;
-  font-size: 35px;
+  top: 0px;
+  font-size: 3rem;
   align-items: center;
+  text-align: center;
+  width: 100%;
+  padding: 1em;
+  background-color: #3aafa9;
 }
 #headf {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
+  font-size: 1.7rem;;
+  /* border: 1px solid rgb(0, 42, 44); */
+  border-radius: 10px;
+  padding: 1em;
+  /* background-color: rgb(0, 42, 44); */
+  color: #3aafa9;
 }
 #h2 {
   padding: 10px;
@@ -27,12 +43,30 @@
 #btnsf {
   display: flex;
   flex-direction: column;
-  background-color: #3aafa9;
+  /* background-color: #3aafa9; */
 }
 #btnsf button {
-  width: 106px;
-  height: 32px;
+  width: 206px;
+  height: 52px;
+  font-size: 1.5rem;
+  color: white;
+  background-color: rgb(0, 42, 44);
+  border-radius: 200px;
 }
-#btnsf button:hover {
+#btnsf button:hover,#btnsf button:active {
+  background-color: rgb(194, 255, 235);
+  color: rgb(0, 42, 44);
   cursor: pointer;
+}
+
+span {
+  color: rgb(0, 42, 44);
+}
+@media (max-width: 767px) {
+  html {
+    font-size: 8px;
+  }
+  #btnsf button {
+    font-size: 2.5rem;
+  }
 }

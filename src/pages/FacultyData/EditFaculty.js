@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./Faculty.css";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function EditFaculty() {
@@ -35,8 +36,9 @@ function EditFaculty() {
         name: info.name,
         subjects: subjectState.object,
       }),
-    }).then(navigate("/faculty-data"))
-    .then(window.location.reload());
+    })
+      .then(navigate("/faculty-data"))
+      .then(window.location.reload());
 
     const result = await res.json();
     console.log(result);
@@ -56,7 +58,7 @@ function EditFaculty() {
   };
 
   return (
-    <div>
+    <div id="faculty_data_edit">
       <p>UserName:</p>
       <input
         name="username"
@@ -78,7 +80,7 @@ function EditFaculty() {
       <ul>
         {subjectState.object.map((element, index) => {
           return (
-            <li key={index}>
+            <li key={index} className="new_course_box">
               <p>Subject: </p>
               <input
                 name={`subject`}
@@ -106,34 +108,42 @@ function EditFaculty() {
                 }}
                 required
               />
-              <button value={index} onClick={handleDeleteSubjects}>
-                Delete Subjects
+              <button
+                className="delete_subject_faculty"
+                value={index}
+                onClick={handleDeleteSubjects}
+              >
+                Delete Subject
               </button>
             </li>
           );
         })}
       </ul>
-      <button
-        value={state.information.username}
-        onClick={(e) => {
-          navigate(
-            `/faculty-data/edit-faculty/${e.target.value}/add-subjects`,
-            {
-              state: { info: state.information.username },
-            }
-          );
-          console.log(state);
-        }}
-      >
-        Add Subjects
-      </button>
-      <button
-        onClick={() => {
-          handleClick(info.username);
-        }}
-      >
-        Save
-      </button>
+      <div id="add_save_data">
+        <button
+          id="add_faculty_data_btn"
+          value={state.information.username}
+          onClick={(e) => {
+            navigate(
+              `/faculty-data/edit-faculty/${e.target.value}/add-subjects`,
+              {
+                state: { info: state.information.username },
+              }
+            );
+            console.log(state);
+          }}
+        >
+          Add Subjects
+        </button>
+        <button
+          id="save_faculty_data_btn"
+          onClick={() => {
+            handleClick(info.username);
+          }}
+        >
+          Save
+        </button>
+      </div>
     </div>
   );
 }
