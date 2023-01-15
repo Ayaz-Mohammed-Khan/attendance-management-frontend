@@ -10,7 +10,7 @@ function Admin() {
   const username = decode(cookies.get("token")).username;
 
   return (
-    <div id="main">
+    <div id="mainpa">
       <h1 id="h1">Admin Home Page</h1>
       <div id="head">
         <h2 id="h2">{username}</h2>

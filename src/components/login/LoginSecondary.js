@@ -47,46 +47,40 @@ function LoginSecondary(props) {
   };
 
   return (
-    <div id="main">
-      <div id="text">
-        <img id="logo" alt="attendence-management" src={logo} />
+    <div className="login_primary_main">
+      <div className="login_primary_text">
+        <img className="logo" alt="attendence-management" src={logo} />
         <h1>Attendence Management System</h1>
       </div>
 
-      <div id="form">
-        <form id="login" onSubmit={handleSubmit} method="POST">
-          <div>
-            <h1>{props.id}</h1>
-          </div>
+      <form
+        className="login_primary_container"
+        onSubmit={handleSubmit}
+        method="POST"
+      >
+        <div className="login_primary">
+          <h1>{props.id}</h1>
           <input
             id="username"
             name="username"
-            className="input-data"
             onChange={handleChange}
+            className="secondary_login_input"
             placeholder="Username"
             type="text"
             value={data.username}
           />
-          <br />
-          <br />
           <input
             id="password"
             name="password"
-            className="input-data"
+            className="secondary_login_input"
             onChange={handleChange}
             placeholder="Password"
             type="password"
             value={data.password}
           />
-          <br />
-          <br />
-          <div>
-            <button id="btns" type="submit">
-              Login
-            </button>
-          </div>
-        </form>
-      </div>
+          <button type="submit">Login</button>
+        </div>
+      </form>
     </div>
   );
 }

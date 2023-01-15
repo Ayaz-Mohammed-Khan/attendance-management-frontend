@@ -1,11 +1,4 @@
-* {
-  margin: 0;
-  font-family: "Ubuntu", sans-serif;
-}
-html {
-  scroll-behavior: smooth;
-}
-#main {
+#mainpa {
   position: absolute;
   background-color: #3aafa9;
   display: flex;

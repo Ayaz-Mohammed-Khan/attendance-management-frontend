@@ -4,24 +4,20 @@ import "./login.css";
 import logo from "./logo.png";
 function LoginPrimary() {
   return (
-    <div id="main">
-      <div id="text">
-        <img id="logo" alt="attendence-management" src={logo} />
+    <div className="login_primary_main">
+      <div className="login_primary_text">
+        <img className="logo" alt="attendence-management" src={logo} />
         <h1>Attendence Management System</h1>
       </div>
-      <div id="form">
-        <div className="login-primery" id="loginp">
+      <div className="login_primary_container">
+        <div className="login_primary">
           <h3>Log in</h3>
-          <br />
           <Link to="/adminlogin">
-            <button className="btns">Admin</button>
+            <button>Admin</button>
           </Link>
           <Link to="/facultylogin">
-            <button className="btns">Faculty</button>
+            <button>Faculty</button>
           </Link>
-
-          <br />
-          <br />
         </div>
       </div>
     </div>
