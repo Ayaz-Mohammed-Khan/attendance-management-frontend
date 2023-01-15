@@ -6,6 +6,9 @@ import StudentData from "./pages/StudentData/StudentData";
 import Admin from "./components/admin/Admin";
 import Faculty from "./components/faculty/Faculty";
 import EditStudent from "./pages/StudentData/EditStudent";
+import AddCourse from "./pages/StudentData/AddCourse";
+import EditFaculty from "./pages/FacultyData/EditFaculty";
+import AddSubjects from "./pages/FacultyData/Addsubjects";
 
 function App() {
   return (
@@ -30,6 +33,18 @@ function App() {
           path="student-data/edit-student/:id"
           element={<EditStudent />}
         ></Route>
+        <Route
+          path="faculty-data/edit-faculty/:id"
+          element={<EditFaculty />}
+        ></Route>
+        <Route
+          path="student-data/edit-student/:id/add-course"
+          element={<AddCourse />}
+        />
+        <Route
+          path="faculty-data/edit-faculty/:id/add-subjects"
+          element={<AddSubjects />}
+        />
       </Routes>
     </BrowserRouter>
   );

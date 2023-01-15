@@ -27,13 +27,14 @@ function EditStudent() {
       .then(navigate("/student-data"))
       .then(window.location.reload());
   };
-  const handleClick = async (param) => {
+  const handleClick = async () => {
     let res = await fetch("/api/update-student", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        id: state.information.rollno,
         name: info.name,
         rollno: info.rollno,
         year: info.year,
@@ -42,7 +43,8 @@ function EditStudent() {
       }),
     });
     const result = await res.json();
-    if (result.message === "success") {
+    console.log(result);
+    if (result.message) {
       navigate("/student-data");
     }
   };
@@ -145,7 +147,13 @@ function EditStudent() {
           );
         })}
       </ul>
-      <button>Add Course</button>
+      <button
+        onClick={() => {
+          navigate("/add-course");
+        }}
+      >
+        Add Course
+      </button>
       <button
         onClick={() => {
           handleClick(info.rollno);
@@ -158,4 +166,3 @@ function EditStudent() {
 }
 
 export default EditStudent;
-
