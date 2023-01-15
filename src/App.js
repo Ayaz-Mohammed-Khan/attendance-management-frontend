@@ -7,6 +7,8 @@ import Admin from "./components/admin/Admin";
 import Faculty from "./components/faculty/Faculty";
 import EditStudent from "./pages/StudentData/EditStudent";
 import AddCourse from "./pages/StudentData/AddCourse";
+import AddStudent from "./pages/StudentData/AddStudent";
+import "./App.css";
 import EditFaculty from "./pages/FacultyData/EditFaculty";
 import AddSubjects from "./pages/FacultyData/Addsubjects";
 
@@ -38,9 +40,14 @@ function App() {
           element={<EditFaculty />}
         ></Route>
         <Route
-          path="student-data/edit-student/:id/add-course"
+          path="faculty-data/edit-faculty/:id"
+          element={<EditFaculty />}
+        ></Route>
+        <Route
+          path="/student-data/edit-student/:id/add-course"
           element={<AddCourse />}
         />
+        <Route path="/student-data/add-new-student" element={<AddStudent />} />
         <Route
           path="faculty-data/edit-faculty/:id/add-subjects"
           element={<AddSubjects />}

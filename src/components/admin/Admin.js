@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
 import decode from "jwt-decode";
 
@@ -7,7 +7,7 @@ const cookies = new Cookies();
 
 function Admin() {
   const username = decode(cookies.get("token")).username;
-  
+
   return (
     <div>
       <h1>Admin Home Page</h1>

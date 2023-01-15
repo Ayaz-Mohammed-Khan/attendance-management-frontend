@@ -1,16 +1,17 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Cookies from "universal-cookie";
+import decode from "jwt-decode";
+
 function Faculty() {
-  const location = useLocation();
-  const { state } = location;
+  const cookies = new Cookies();
+  const username = decode(cookies.get("token")).username;
   return (
     <div>
       <h1>Faculty Home Page</h1>
-      <h2>{state.username}</h2>
+      <h2>{username}</h2>
       <Link to="/student-data">
         <button>Student Data</button>
-      </Link>
-      <Link>
       </Link>
     </div>
   );

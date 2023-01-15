@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import "./student.css";
+import Cookies from "universal-cookie";
+import decode from "jwt-decode";
 
 function EditStudent() {
+  const cookies = new Cookies();
+
   const location = useLocation();
   const { state } = location;
   const navigate = useNavigate();
+  const isAdmin = decode(cookies.get("token")).isAdmin;
 
   const [info, setInfo] = useState({
     name: state.information.name,
@@ -27,7 +33,8 @@ function EditStudent() {
       .then(navigate("/student-data"))
       .then(window.location.reload());
   };
-  const handleClick = async () => {
+  const handleSave = async () => {
+    console.log(info, courseState.objects);
     let res = await fetch("/api/update-student", {
       method: "POST",
       headers: {
@@ -63,6 +70,10 @@ function EditStudent() {
     });
   };
 
+  const preventFaculty = (e) => {
+    console.log("Sorry, faculty cannot update student record");
+  };
+
   return (
     <div>
       <p>Name :</p>
@@ -70,7 +81,7 @@ function EditStudent() {
         name="name"
         type="text"
         value={info.name}
-        onChange={handleChange}
+        onChange={isAdmin === true ? handleChange : preventFaculty}
         required
       />
       <p>Roll No: </p>
@@ -79,7 +90,7 @@ function EditStudent() {
         min="1"
         name="rollno"
         value={info.rollno}
-        onChange={handleChange}
+        onChange={isAdmin === true ? handleChange : preventFaculty}
         required
       />
       <p>Year: </p>
@@ -88,7 +99,7 @@ function EditStudent() {
         min="1"
         name="year"
         value={info.year}
-        onChange={handleChange}
+        onChange={isAdmin === true ? handleChange : preventFaculty}
         required
       />
       <p>Degree: </p>
@@ -96,7 +107,7 @@ function EditStudent() {
         type="text"
         name="degree"
         value={info.degree}
-        onChange={handleChange}
+        onChange={isAdmin === true ? handleChange : preventFaculty}
         required
       />
       <p>Courses: </p>
@@ -105,42 +116,56 @@ function EditStudent() {
         {courseState.objects.map((element, index) => {
           return (
             <li key={index}>
-              <p>Course: </p>
-              <input
-                name={`course`}
-                type="text"
-                value={courseState.objects[index].course}
-                onChange={(e) => {
-                  const { value } = e.target;
-                  let arraycopy = [...courseState.objects];
-                  arraycopy[index].course = value;
-                  setCourse({ ...courseState, objects: arraycopy });
-                }}
-                required
-              />
-              <br />
-              <p>Attendance: </p>
-              <input
-                name={`attendance`}
-                type="number"
-                min="0"
-                max="100"
-                value={courseState.objects[index].attendance}
-                onChange={(e) => {
-                  let { value } = e.target;
-                  if (value > 100) {
-                    value = 100;
-                  } else if (value < 0) {
-                    value = 0;
-                  }
-                  let arraycopy = [...courseState.objects];
-                  arraycopy[index].attendance = value;
-                  setCourse({ ...courseState, objects: arraycopy });
-                }}
-                required
-              />
-              <p>%</p>
-              <button value={index} onClick={handleDelete}>
+              <form>
+                <p>Course: </p>
+                <input
+                  name={`course`}
+                  type="text"
+                  value={courseState.objects[index].course}
+                  onChange={(e) => {
+                    if (isAdmin === false) {
+                      preventFaculty();
+                    } else {
+                      const { value } = e.target;
+                      let arraycopy = [...courseState.objects];
+                      arraycopy[index].course = value;
+                      setCourse({ ...courseState, objects: arraycopy });
+                    }
+                  }}
+                  required
+                />
+                <br />
+                <p>Attendance: </p>
+                <input
+                  name={`attendance`}
+                  type="number"
+                  min="0"
+                  max="100"
+                  value={courseState.objects[index].attendance}
+                  onChange={(e) => {
+                    if (isAdmin === false) {
+                      preventFaculty();
+                    } else {
+                      let { value } = e.target;
+                      if (value > 100) {
+                        value = 100;
+                      } else if (value < 0) {
+                        value = 0;
+                      }
+                      let arraycopy = [...courseState.objects];
+                      arraycopy[index].attendance = value;
+                      setCourse({ ...courseState, objects: arraycopy });
+                    }
+                  }}
+                  required
+                />
+                <p>%</p>
+              </form>
+              <button
+                style={{ display: isAdmin === true ? "block" : "none" }}
+                value={index}
+                onClick={handleDelete}
+              >
                 Delete Course
               </button>
             </li>
@@ -148,15 +173,18 @@ function EditStudent() {
         })}
       </ul>
       <button
-        onClick={() => {
-          navigate("/add-course");
+        value={state.information.rollno}
+        onClick={(e) => {
+          navigate(`/student-data/edit-student/${e.target.value}/add-course`, {
+            state: { info: state.information.rollno },
+          });
         }}
       >
         Add Course
       </button>
       <button
         onClick={() => {
-          handleClick(info.rollno);
+          handleSave(info.rollno);
         }}
       >
         Save

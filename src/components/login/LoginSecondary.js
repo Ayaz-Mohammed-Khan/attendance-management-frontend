@@ -39,7 +39,9 @@ function LoginSecondary(props) {
     if (result.token) {
       cookies.set("token", result.token);
       const info = decode(result.token);
-      navigate(`${info.isAdmin ? "/admin/home" : "/faculty/home"}`);
+      navigate(`${info.isAdmin ? "/admin/home" : "/faculty/home"}`, {
+        state: { username: info.username, isAdmin: info.isAdmin },
+      });
     }
   };
 

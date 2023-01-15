@@ -31,7 +31,7 @@ function EditFaculty() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        id:state.information.username,
+        id: state.information.username,
         username: info.username,
         name: info.name,
         subjects: subjectState.object,
@@ -40,7 +40,7 @@ function EditFaculty() {
     const result = await res.json();
     console.log(result);
     if (result.message === "success") {
-      console.log('success')
+      console.log("success");
     }
   };
 
@@ -56,7 +56,6 @@ function EditFaculty() {
       };
     });
   };
- 
 
   return (
     <div>
@@ -117,10 +116,15 @@ function EditFaculty() {
         })}
       </ul>
       <button
-      onClick={()=>{
-        navigate("/faculty-data/edit-faculty/:id/add-subjects")
-      }}
-      >Add Subject</button>
+        value={state.information.username}
+        onClick={(e) => {
+          navigate(`faculty-data/edit-faculty/${e.target.value}/add-subjects`, {
+            state: { info: state.information.username },
+          });
+        }}
+      >
+        Add Subjects
+      </button>
       <button
         onClick={() => {
           handleClick(info.username);
