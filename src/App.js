@@ -11,6 +11,7 @@ import AddStudent from "./pages/StudentData/AddStudent";
 import "./App.css";
 import EditFaculty from "./pages/FacultyData/EditFaculty";
 import AddSubjects from "./pages/FacultyData/Addsubjects";
+import AddFaculty from "./pages/FacultyData/Addfaculty";
 
 function App() {
   return (
@@ -49,9 +50,11 @@ function App() {
         />
         <Route path="/student-data/add-new-student" element={<AddStudent />} />
         <Route
-          path="faculty-data/edit-faculty/:id/add-subjects"
+          path="/faculty-data/edit-faculty/:id/add-subjects"
           element={<AddSubjects />}
         />
+
+        <Route path="/faculty-data/add-new-faculty" element={<AddFaculty />} />
       </Routes>
     </BrowserRouter>
   );

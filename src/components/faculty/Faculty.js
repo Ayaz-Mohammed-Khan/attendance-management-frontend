@@ -1,20 +1,46 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
 import decode from "jwt-decode";
+import axios from "axios";
 
-function Faculty() {
+function AllData() {
   const cookies = new Cookies();
-  const username = decode(cookies.get("token")).username;
+  const isAdmin = decode(cookies.get("token")).isAdmin;
+
+  const f = async () => {
+    const { data } = await axios.get(
+      "http://localhost:5000/api/display-faculty"
+    );
+    return data;
+  };
+  console.log(f);
   return (
-    <div>
-      <h1>Faculty Home Page</h1>
-      <h2>{username}</h2>
-      <Link to="/student-data">
-        <button>Student Data</button>
-      </Link>
+    <div id="student-data-container">
+      <h1 id="student-data-heading">Student Data</h1>
+      <table id="table" cellSpacing="0" cellPadding="0">
+        <tbody>
+          <tr id="table_header">
+            <th>Name</th>
+            <th>Roll No.</th>
+            <th>Year</th>
+            <th>Degree</th>
+            <th>Courses</th>
+          </tr>
+
+          <Link to="/student-data/add-new-student">
+            <button
+              id="table_add_student"
+              style={{ display: isAdmin === true ? "block" : "none" }}
+            >
+              <p>Add Student</p>
+            </button>
+          </Link>
+        </tbody>
+      </table>
     </div>
   );
 }
 
-export default Faculty;
+export default function App() {
+  return <AllData />;
+}

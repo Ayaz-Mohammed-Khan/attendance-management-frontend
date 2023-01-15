@@ -40,7 +40,7 @@ function AllData() {
                 id="table_add_student"
                 style={{ display: isAdmin === true ? "block" : "none" }}
               >
-                <p>Add Student</p>
+                <p>Add Student{data}</p>
               </button>
             </Link>
           </tbody>

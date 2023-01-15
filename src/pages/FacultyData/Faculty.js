@@ -15,8 +15,9 @@ function Faculty(props) {
     }).then(window.location.reload());
   };
   function handleEdit(param) {
-    navigate(`edit-faculty/${param}`, { state: { information: props.info } });
+    navigate(`/edit-faculty/${param}`, { state: { information: props.info } });
   }
+
   return (
     <div>
       <p>UserName : {props.info.username}</p>
@@ -48,6 +49,7 @@ function Faculty(props) {
       >
         Delete
       </button>
+     
     </div>
   );
 }

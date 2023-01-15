@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function EditFaculty() {
-  console.log("hi");
   const location = useLocation();
   const { state } = location;
   const navigate = useNavigate();
@@ -36,12 +35,11 @@ function EditFaculty() {
         name: info.name,
         subjects: subjectState.object,
       }),
-    });
+    }).then(navigate("/faculty-data"))
+    .then(window.location.reload());
+
     const result = await res.json();
     console.log(result);
-    if (result.message === "success") {
-      console.log("success");
-    }
   };
 
   const [subjectState, setSubject] = useState({
@@ -118,9 +116,13 @@ function EditFaculty() {
       <button
         value={state.information.username}
         onClick={(e) => {
-          navigate(`faculty-data/edit-faculty/${e.target.value}/add-subjects`, {
-            state: { info: state.information.username },
-          });
+          navigate(
+            `/faculty-data/edit-faculty/${e.target.value}/add-subjects`,
+            {
+              state: { info: state.information.username },
+            }
+          );
+          console.log(state);
         }}
       >
         Add Subjects
