@@ -11,9 +11,9 @@ function Admin() {
 
   return (
     <div id="mainpa">
-      <h1 id="h1">Admin Home Page</h1>
+      <h1 id="Header1">Admin Home Page</h1>
       <div id="head">
-        <h2 id="h2">{username}</h2>
+        <h2 id="Header2"><span id="admin_span" >Logged in as: </span>{username}</h2>
       </div>
       <div id="btnsa">
         <Link to="/student-data">
