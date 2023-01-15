@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./Faculty.css";
 import { useNavigate } from "react-router-dom";
 
 function AddFaculty() {
@@ -23,14 +24,14 @@ function AddFaculty() {
 
   const handleADD = async () => {
     var subjectArray = document.getElementsByClassName("newSubject");
-    var coursesArray = document.getElementsByClassName("newCourses");
+    var coursesArray = document.getElementsByClassName("newAttendance");
 
     for (var i = 0; i < subjectArray.length; i++) {
       let subjectVal = subjectArray.item(i).value;
       const coursesVal = coursesArray.item(i).value;
 
-      components[i].course = subjectVal;
-      components[i].attendance = coursesVal;
+      components[i].subject = subjectVal;
+      components[i].courses = coursesVal;
     }
 
     console.log(data, components);
@@ -42,14 +43,14 @@ function AddFaculty() {
       body: JSON.stringify({
         username: data.username,
         name: data.name,
-        subjects: data.subjects,
+        subjects: components,
       }),
     })
       .then(navigate("/faculty-data"))
       .then(window.location.reload());
   };
   return (
-    <div>
+    <div id="add_newfaculty">
       <p>UserName: </p>
       <input
         type="text"
@@ -68,9 +69,9 @@ function AddFaculty() {
         <p>Subjects: </p>
         <div className="display-flex-col">
           {components.map((item, i) => (
-            <div key={i}>
+            <div key={i} className="add_newfaculty_sub">
               <p>Subject:</p>
-              <input type="text" className="newCourse" />
+              <input type="text" className="newSubject" />
               <p>Courses:</p>
               <input type="text" className="newAttendance" />
             </div>
@@ -78,9 +79,15 @@ function AddFaculty() {
         </div>
       </div>
 
-      <button onClick={addComponent}>ADD SUBJECT</button>
+      <div>
+        <button id="faculty_add_subject" onClick={addComponent}>
+          + SUBJECT
+        </button>
+      </div>
 
-      <button onClick={handleADD}>ADD FACULTY</button>
+      <button id="faculty_add_faculty" onClick={handleADD}>
+        ADD FACULTY
+      </button>
     </div>
   );
 }

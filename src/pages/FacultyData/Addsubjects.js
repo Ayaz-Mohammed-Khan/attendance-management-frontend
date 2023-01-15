@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./Faculty.css";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function AddSubjects() {
@@ -33,8 +34,7 @@ function AddSubjects() {
   };
 
   return (
-    <div>
-      
+    <div id="add_new_facultysubject">
       <p>Subject:</p>
       <input
         type="text"
@@ -49,15 +49,16 @@ function AddSubjects() {
         value={inputData.courses}
         onChange={handleChange}
       />
-
-      <button
-        value={state.info}
-        onClick={() => {
-          handleAdd();
-        }}
-      >
-        ADD
-      </button>
+      <div>
+        <button
+          value={state.info}
+          onClick={() => {
+            handleAdd();
+          }}
+        >
+          ADD
+        </button>
+      </div>
     </div>
   );
 }
