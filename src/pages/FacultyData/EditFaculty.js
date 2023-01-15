@@ -2,93 +2,93 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function EditFaculty() {
-    const location = useLocation();
-    const { state } = location;
-    const navigate = useNavigate();
-    const [info, setInfo] = useState({
-        username: state.information.username,
-        name: state.information.name,
-     
-      })
-    const handleDeleteSubjects=async(e)=>{
-        await fetch("/api/delete-subjects",{
-            method:"POST",
-            headers:{
-                "Content-Type": "application/json",
-            },
-            body:JSON.stringify({
-                username: info.username,
-                index: e.target.value,
-              }),
-        })
-        .then(navigate("/faculty-data"))
-        .then(window.location.reload())
-    }
-    const handleClick = async (param) => {
-        let res = await fetch("/api/update-faculty", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: info.username,
-            name: info.name,
-            subjects: subjectState.objects,
-          }),
-        });
-        const result = await res.json();
-        if (result.message === "success") {
-          navigate("/faculty-data");
-        }
-      };
-    
-
-
-    const[subjectState,setSubject]=useState({
-        object:state.information.subjects
+  console.log("hi");
+  const location = useLocation();
+  const { state } = location;
+  const navigate = useNavigate();
+  const [info, setInfo] = useState({
+    username: state.information.username,
+    name: state.information.name,
+  });
+  const handleDeleteSubjects = async (e) => {
+    await fetch("/api/delete-subjects", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: info.username,
+        index: e.target.value,
+      }),
     })
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setInfo((prev) => {
-          return {
-            ...prev,
-            [name]: value,
-          };
-        });
+      .then(navigate("/faculty-data"))
+      .then(window.location.reload());
+  };
+  const handleClick = async () => {
+    let res = await fetch("/api/update-faculty", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: state.information.username,
+        username: info.username,
+        name: info.name,
+        subjects: subjectState.object,
+      }),
+    });
+    const result = await res.json();
+    console.log(result);
+    if (result.message === "success") {
+      console.log("success");
+    }
+  };
+
+  const [subjectState, setSubject] = useState({
+    object: state.information.subjects,
+  });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setInfo((prev) => {
+      return {
+        ...prev,
+        [name]: value,
       };
-    
-return(
+    });
+  };
+
+  return (
     <div>
-        <p>UserName:</p>
-        <input 
-            username="username"
-            type="text"
-            value={info.name}
-            onchange={handleChange}
-            required
-            />
-        <p>Name:</p>
-        <input
+      <p>UserName:</p>
+      <input
+        name="username"
+        type="text"
+        value={info.username}
+        onChange={handleChange}
+        required
+      />
+      <p>Name:</p>
+      <input
         name="name"
         type="text"
         value={info.name}
-        onchange={handleChange}
+        onChange={handleChange}
         required
-        />
-        <p>Subjects:</p>
+      />
+      <p>Subjects:</p>
 
-        {/* <ul>
-        {subjectState.objects.map((element, index) => {
+      <ul>
+        {subjectState.object.map((element, index) => {
           return (
             <li key={index}>
               <p>Subject: </p>
               <input
                 name={`subject`}
                 type="text"
-                value={subjectState.objects[index].subject}
+                value={subjectState.object[index].subject}
                 onChange={(e) => {
                   const { value } = e.target;
-                  let arraycopy = [...subjectState.objects];
+                  let arraycopy = [...subjectState.object];
                   arraycopy[index].subject = value;
                   setSubject({ ...subjectState, objects: arraycopy });
                 }}
@@ -99,14 +99,14 @@ return(
               <input
                 name={`courses`}
                 type="text"
-                value={subjectState.objects[index].courses}
+                value={subjectState.object[index].courses}
                 onChange={(e) => {
-                    const { value } = e.target;
-                    let arraycopy = [...subjectState.objects];
-                    arraycopy[index].courses = value;
-                    setSubject({ ...subjectState, objects: arraycopy });
-                  }}
-                  required
+                  const { value } = e.target;
+                  let arraycopy = [...subjectState.object];
+                  arraycopy[index].courses = value;
+                  setSubject({ ...subjectState, objects: arraycopy });
+                }}
+                required
               />
               <button value={index} onClick={handleDeleteSubjects}>
                 Delete Subjects
@@ -114,8 +114,17 @@ return(
             </li>
           );
         })}
-      </ul> */}
-      <button>Add Course</button>
+      </ul>
+      <button
+        value={state.information.username}
+        onClick={(e) => {
+          navigate(`faculty-data/edit-faculty/${e.target.value}/add-subjects`, {
+            state: { info: state.information.username },
+          });
+        }}
+      >
+        Add Subjects
+      </button>
       <button
         onClick={() => {
           handleClick(info.username);
@@ -124,8 +133,7 @@ return(
         Save
       </button>
     </div>
-)
+  );
+}
 
-    }
-    
 export default EditFaculty;

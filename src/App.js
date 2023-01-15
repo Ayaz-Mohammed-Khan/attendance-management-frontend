@@ -9,6 +9,8 @@ import EditStudent from "./pages/StudentData/EditStudent";
 import AddCourse from "./pages/StudentData/AddCourse";
 import AddStudent from "./pages/StudentData/AddStudent";
 import "./App.css";
+import EditFaculty from "./pages/FacultyData/EditFaculty";
+import AddSubjects from "./pages/FacultyData/Addsubjects";
 
 function App() {
   return (
@@ -34,10 +36,22 @@ function App() {
           element={<EditStudent />}
         ></Route>
         <Route
+          path="faculty-data/edit-faculty/:id"
+          element={<EditFaculty />}
+        ></Route>
+        <Route
+          path="faculty-data/edit-faculty/:id"
+          element={<EditFaculty />}
+        ></Route>
+        <Route
           path="/student-data/edit-student/:id/add-course"
           element={<AddCourse />}
         />
         <Route path="/student-data/add-new-student" element={<AddStudent />} />
+        <Route
+          path="faculty-data/edit-faculty/:id/add-subjects"
+          element={<AddSubjects />}
+        />
       </Routes>
     </BrowserRouter>
   );
