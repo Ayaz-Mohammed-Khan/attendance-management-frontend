@@ -8,6 +8,7 @@ import Faculty from "./components/faculty/Faculty";
 import EditStudent from "./pages/StudentData/EditStudent";
 import AddCourse from "./pages/StudentData/AddCourse";
 import AddStudent from "./pages/StudentData/AddStudent";
+import "./App.css";
 
 function App() {
   return (

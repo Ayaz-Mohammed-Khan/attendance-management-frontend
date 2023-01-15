@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import "./student.css";
 
 function AddCourse() {
   const [inputData, setInputData] = useState({ course: "", attendance: 0 });
