@@ -1,18 +1,18 @@
-#loading-text {
+.loading-text {
   color: rgb(16, 69, 134);
 }
-#error-text {
+.error-text {
   color: rgb(110, 1, 1);
 }
-#student-data-container {
+.student-data-container {
   text-align: center;
 }
-#student-data-heading {
+.student-data-heading {
   font-weight: 600;
   font-size: 3em;
   margin: 2vh 0 3vh 0;
 }
-#table {
+.table {
   position: relative;
   width: 80%;
   margin-left: 10%;
@@ -25,12 +25,12 @@ tr {
   max-height: 5vh;
 }
 
-#table th {
+.table th {
   font-weight: 600;
   padding: 3vh 0;
 }
 
-#table_header {
+.table_header {
   background-color: rgba(127, 215, 206, 0.437);
 }
 
@@ -81,7 +81,7 @@ tr:hover {
 .table_delete_button:hover {
   background-color: rgb(225, 34, 34);
 }
-#table_add_student {
+.table_add_student {
   border: none;
   position: absolute;
   background-color: rgb(0, 183, 24);
@@ -91,11 +91,11 @@ tr:hover {
   bottom: -10vh;
   border-radius: 10px;
 }
-#table_add_student:hover {
+.table_add_student:hover {
   background-color: rgb(0, 197, 26);
 }
 
-#table_add_student p {
+.table_add_student p {
   font-size: 1.5em;
   color: rgb(244, 243, 243);
 }

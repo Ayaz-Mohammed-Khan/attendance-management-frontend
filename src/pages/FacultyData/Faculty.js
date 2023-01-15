@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "../StudentData/student.css";
 
 function Faculty(props) {
   const navigate = useNavigate();
@@ -19,38 +20,63 @@ function Faculty(props) {
   }
 
   return (
-    <div>
-      <p>UserName : {props.info.username}</p>
-      <p>Name: {props.info.name}</p>
-      <p>Subjects: </p>
-      <ul>
-        {props.info.subjects.map((element, index) => {
-          return (
-            <li key={index}>
-              Subject:{element.subject}
-              <br />
-              Courses:{element.courses}
-            </li>
-          );
-        })}
-      </ul>
+    <tr className="table_row" height="10px">
+      <td>
+        <p>{props.info.username}</p>
+      </td>
+      <td>
+        <p>{props.info.name}</p>
+      </td>
 
-      <button
-        onClick={() => {
-          handleEdit(props.info.username);
-        }}
-      >
-        Edit
-      </button>
-      <button
-        onClick={() => {
-          handleDelete(props.info.username);
-        }}
-      >
-        Delete
-      </button>
-     
-    </div>
+      <td className="table_column_courses">
+        <ul className="table_courses">
+          {props.info.subjects.map((element, index) => {
+            return (
+              <li key={index} className="table_course">
+                <span
+                  style={{
+                    fontWeight: "600",
+                    fontSize: "1rem",
+                    color: "rgb(78, 4, 4)",
+                  }}
+                >
+                  Subject
+                </span>
+                {element.subject}
+                <br />
+                <span
+                  style={{
+                    fontWeight: "600",
+                    fontSize: "1rem",
+                    color: "rgb(53, 32, 4)",
+                  }}
+                >
+                  Courses
+                </span>
+                {element.courses}
+              </li>
+            );
+          })}
+        </ul>
+
+        <button
+          className="table_edit_button"
+          onClick={() => {
+            handleEdit(props.info.username);
+          }}
+        >
+          Edit
+        </button>
+        <button
+          className="table_delete_button"
+          onClick={() => {
+            handleDelete(props.info.username);
+          }}
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
   );
 }
 

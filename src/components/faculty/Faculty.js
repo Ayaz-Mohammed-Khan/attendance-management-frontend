@@ -5,15 +5,8 @@ import "./faculty.css";
 
 function AllData() {
   const cookies = new Cookies();
-  const isAdmin = decode(cookies.get("token")).isAdmin;
+  const username = decode(cookies.get("token")).username;
 
-  const f = async () => {
-    const { data } = await axios.get(
-      "http://localhost:5000/api/display-faculty"
-    );
-    return data;
-  };
-  console.log(f);
   return (
     <div id="maninf">
       <h1 id="h1">Faculty Home Page</h1>
