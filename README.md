@@ -82,6 +82,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ---
 
 
+https://github.com/Ayaz-Mohammed-Khan/attendance-management-frontend/assets/109906097/ddee0efc-4bee-4f4a-9f3e-6b52828bc375
 
-https://github.com/Ayaz-Mohammed-Khan/attendance-management-frontend/assets/109906097/3e2e379e-6714-4097-86bd-b1d5add44cd4
+
 
